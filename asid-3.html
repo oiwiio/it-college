@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>asid-3</title>
+</head>
+<body>
+        <div class="">
+            <h1 class=""> Вариант 13, зеркален ли массив</h1>
+            <p> Ввести числа через запятую: </p>
+            <input type="text" id="arrayInput">
+            <button onclick="checkArray()"> Проверить </button>
+            <div id="result"> </div>
+        </div>
+        <script>
+            function mirror(arr) {
+                const n = arr.length;
+                for ( let i = 0; i < Math.floor(n/2); i++) {
+                    if (arr[i] !== arr[n-1-i]) {
+                        return false;
+                    }
+                }
+                return true;
+            } 
+            
+
+            function checkArray() {
+                const input = document.getElementById('arrayInput').value;
+                const array = input.split(',').map(item => {
+                    const num = item.trim();
+                    return isNaN(num) ? num : Number(num);
+                })
+
+                const result = mirror(array);
+                const resultElement = document.getElementById('result');
+
+                if (result) {
+                     resultElement.innerHTML = `<p> массив [&{array}] зеркален </p>`;
+                    
+                     resultElement.className = 'result yes';
+                 } else {
+                   resultElement.innerHTML = `<p> массив [&{array}] не зеркален</p>`;
+                    
+                     resultElement.className = 'result no';
+                }
+             } 
+        </script>
+</body>
+</html>
